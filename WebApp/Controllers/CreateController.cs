@@ -46,7 +46,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeUniversity(University uni, Location loc)
+        public IActionResult MakeUniversity(WebUniversity uni)
         {
             //Insert new info into University Table, and the Location Table
             string sProc = "makeUniversity";
@@ -54,11 +54,11 @@ namespace WebApp.Controllers
 
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("name", uni.Name);
-            parameters.Add("acr", uni.Acronim);
-            parameters.Add("numStud", uni.NumberOfStudents);
-            parameters.Add("descr", uni.Description);
-            parameters.Add("lati", loc.Latitude);
-            parameters.Add("longi", loc.Longitude);
+            parameters.Add("acr", uni.Abbrev);
+            parameters.Add("numStud", uni.NumStud);
+            parameters.Add("descr", uni.Descr);
+            parameters.Add("lati", uni.Lati);
+            parameters.Add("longi", uni.Longi);
 
 
             using (var con = new MySqlConnection(s))
@@ -70,23 +70,23 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeEvent(Event e, Location loc)
+        public IActionResult MakeEvent(WebEvent e)
         {
             string sProc = "makeEvent";
             var s = config.GetConnectionString("MySqlDatabase");
 
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("name", e.Name);
-            parameters.Add("theDate", e.Date);
-            parameters.Add("duration", e.Duration);
-            parameters.Add("locName", loc.LocationName);
-            parameters.Add("catId", e.CategoryId);
-            parameters.Add("descr", e.Description);
+            parameters.Add("theDate", e.Dt);
+            parameters.Add("duration", e.Dur);
+            parameters.Add("locName", e.Loc);
+            parameters.Add("catId", e.Cat);
+            parameters.Add("descr", e.Descr);
             parameters.Add("phone", e.Phone);
-            parameters.Add("email", e.email);
-            parameters.Add("eTypeId", e.eTypeId);
-            parameters.Add("lati", loc.Latitude);
-            parameters.Add("longi", loc.Longitude);
+            parameters.Add("email", e.Email);
+            parameters.Add("eTypeId", e.EventTypeId);
+            parameters.Add("lati", e.Lati);
+            parameters.Add("longi", e.Longi);
 
             using (var con = new MySqlConnection(s))
             {

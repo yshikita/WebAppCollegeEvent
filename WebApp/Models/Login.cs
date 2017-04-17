@@ -44,7 +44,7 @@ namespace WebApp.Models
                     return null;
                 var user = repo.GetUserById(userId.Value);
 
-                return userId.HasValue ? user : null;
+                return user;
             }
             
         }
