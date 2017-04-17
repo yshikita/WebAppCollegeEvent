@@ -15,14 +15,14 @@ namespace WebApp.Models
         public string Description { get; set; }
     }
 
-    //public class WebUniversity
-    //{
-    //    public string Name { get; set; }
-    //    public string Abbrev { get; set; }
-    //    public string Loc { get; set; }
-    //    public decimal Lati { get; set; }
-    //    public decimal Longi { get; set; }
-    //    public int NumStud { get; set; }
-    //    public string Descr { get; set; }
-    //}
+    public class WebUniversity
+    {
+        public string Name { get; set; }
+        public string Abbrev { get; set; }
+        public string Loc { get; set; }
+        public decimal Lati { get; set; }
+        public decimal Longi { get; set; }
+        public int NumStud { get; set; }
+        public string Descr { get; set; }
+    }
 }
