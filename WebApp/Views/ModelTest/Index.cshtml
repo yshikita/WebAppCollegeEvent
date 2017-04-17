@@ -1,0 +1,72 @@
+﻿@model List<WebApp.Models.RsoMembership>
+
+@{
+    ViewData["Title"] = "List All Users";
+}
+
+<h2>Index</h2>
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Rso Id</th>
+            <th>Member</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var a in Model){
+            <tr>
+                <td>@a.RsoId</td>
+                @foreach (var z in a.rso.rsoMem) {
+                    <td>z.user.FirstName</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(z => z.UserId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Username)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserType)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserType)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>*@

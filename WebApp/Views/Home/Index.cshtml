@@ -1,0 +1,17 @@
+﻿@model List<WebApp.Models.Event>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <h2>All Events</h2>
+        <ul>
+            @foreach (var e in Model)
+            {
+                <li><a href="">@e.Name @e.LocationId</a></li>
+            }
+        </ul>
+    </div>
+</div>

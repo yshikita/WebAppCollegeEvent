@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Create University";
+}
+
+<br />
+<div class="container">
+    <div class="col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
+        <div class="panel" style="border: 1px solid lightgray;">
+            <div class="panel-body">
+                <form class="form-horizontal row" asp-controller="Create" asp-action="MakeUniversity" method="post">
+                    <h1 style="color:darkblue">Create University</h1>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Name:</label>
+                        <input type="text" class="form-control col-md-6" name="Name"/>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Acronim:</label>
+                        <input type="text" class="form-control col-md-6" name="Acr"/>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Location Latitude:</label>
+                        <input type="number" step="0.000001" class="form-control col-md-6" name="Lati" />
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Location Longitude:</label>
+                        <input type="number" step="0.000001" class="form-control col-md-6" name="Longi" />
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Number of Students:</label>
+                        <input type="text" class="form-control col-md-6" name="NumStud"/>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Description:</label>
+                        <input type="text" class="form-control col-md-6" name="Descr"/>
+                    </div>
+                    <button type="submit" class="btn btn-info" style="background-color:darkblue">Create</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,60 @@
+﻿@{
+}
+
+<br />
+<div class="container">
+    <div class="col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
+        <div class="panel" style="border: 1px solid lightgray;">
+            <div class="panel-body">
+                <h2 style="color:darkblue">Register</h2>
+                <form class="form-horizontal row" asp-controller="Register" asp-action="Signup" method="post">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">First Name:</label>
+                        <input type="text" class="form-control col-md-6" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Last Name:</label>
+                        <input type="text" class="form-control col-md-6" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">School:</label>
+                        <select class="form-control">
+                            
+                            @{
+                                string[] test = { "Select one", "UCF", "FIU" };
+                                foreach (var x in test)
+                                {
+                                    <option value="@x">@x</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Email:</label>
+                        <input type="email" class="form-control col-md-6" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Confirm Email:</label>
+                        <input type="email" class="form-control col-md-6" />
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Password:</label>
+                        <input type="password" class="form-control col-md-6" />
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-3">Confirm Password:</label>
+                        <input type="password" class="form-control col-md-6" />
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-info btn-block" style="background-color:darkblue">Register</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
