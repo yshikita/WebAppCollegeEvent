@@ -1,5 +1,4 @@
 ﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-@*@model WebApp.Models.User*@
 @{ 
 
 }
@@ -49,7 +48,22 @@
                         <li><a asp-area="" asp-controller="Create" asp-action="Event">Create Event</a></li>
                     }*@
                 </ul>
-                <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Index" asp-controller="Login">Log In</a></li></ul>
+                
+
+                @{
+                    var u = (WebApp.Models.User)ViewData["User"];
+                    if (u != null)
+                    {
+                        <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Logout" asp-controller="Login">Log Out</a></li></ul>
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Index" asp-controller="Login">Log In</a></li></ul>
+                    }
+                }
+
+                
+                
             </div>
         </div>
     </nav>

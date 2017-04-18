@@ -31,6 +31,14 @@ namespace WebApp.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("User");
+            ViewData["User"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
         [HttpPost]
         [AllowAnonymous]
         public IActionResult CheckCreds(Login log)
@@ -44,6 +52,8 @@ namespace WebApp.Controllers
                 CookieOptions options = new CookieOptions() { Expires = DateTime.Now.AddMinutes(20) };
                 Response.Cookies.Append("User", UserSerialization.SerializeUser(user), options);
 
+                ViewData["User"] = user;
+
                 return View("Pass");
             }
 
@@ -56,17 +66,11 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         public IActionResult Test()
         {
+            var c = Request.Cookies["User"];
 
-            User user = new User();
-            var c = Request.Cookies["User"].Split('~');
+            User user = UserSerialization.DeserializeUser(c);
 
-            user.Id = int.Parse(c[0]);
-            user.FirstName = c[0];
-            user.LastName = c[0];
-            user.Email = c[0];
-            user.Password = c[0];
-            
-
+            ViewData["User"] = user;
 
             return View("Pass");
         }

@@ -15,6 +15,12 @@ namespace WebApp.Models
 
         public static User DeserializeUser(string json)
         {
+
+            if (string.IsNullOrEmpty(json))
+            {
+                return null;
+            }
+
             return JsonConvert.DeserializeObject<User>(json);
         }
     }

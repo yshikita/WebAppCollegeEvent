@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Contexts;
+using WebApp.Models;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -11,20 +13,27 @@ namespace WebApp.Controllers
     {
 
         MySqlContext cont { get; set; }
+        User TheUser { get; set; }
 
         public HomeController(MySqlContext context)
         {
             cont = context;
+            
         }
 
         public IActionResult Index()
         {
-            return View(cont.Event.ToList());
-            //return View();
+            SetUserData();
+            HomeViewModel vm = new HomeViewModel() { User = TheUser, UpcomingEvents = cont.Event.Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddDays(7)).ToList() };
+
+            
+
+            return View(vm);
         }
 
         public IActionResult FindEvents()
         {
+            SetUserData();
             ViewData["Message"] = "Find Events Page";
 
             return View();
@@ -32,6 +41,7 @@ namespace WebApp.Controllers
 
         public IActionResult Contact()
         {
+            SetUserData();
             ViewData["Message"] = "Your contact page.";
 
             return View();
@@ -39,7 +49,14 @@ namespace WebApp.Controllers
 
         public IActionResult Error()
         {
+            SetUserData();
             return View();
+        }
+
+        private void SetUserData()
+        {
+            TheUser = UserSerialization.DeserializeUser(Request.Cookies["User"]);
+            ViewData["User"] = TheUser;
         }
     }
 }
