@@ -39,7 +39,7 @@ namespace WebApp.Controllers
             if (newUserInfo.ConfirmEmailAndPassword())
             {
                 //if count is 0 then this email hasnt been used for a previous user
-                if(context.User.Where(x => x.Email == newUserInfo.Email).Count() == 0)
+                if (context.User.Where(x => x.Email == newUserInfo.Email).Count() == 0)
                 {
                     var userRepo = new UserRepository(config, context);
                     var user = userRepo.CreateUser(newUserInfo);
@@ -50,7 +50,7 @@ namespace WebApp.Controllers
                         Response.Cookies.Delete("User");
                         Response.Cookies.Append("User", UserSerialization.SerializeUser(user), options);
 
-                        return RedirectToAction("../Home");
+                        return RedirectToAction("Index","Login");
                     }
 
                 }
