@@ -22,7 +22,10 @@ namespace WebApp.Controllers
             //Verify data to be correct
 
 
-            return RedirectToAction("../Home");
+            //return RedirectToAction("../Home");
+
+            //return to login page
+            return RedirectToAction("Index", "Login");
         }
     }
 }
