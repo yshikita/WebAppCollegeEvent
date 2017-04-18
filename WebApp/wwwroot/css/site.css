@@ -28,6 +28,16 @@ textarea {
     width: 100%;
 }
 
+/* Make tables not too small */
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+th {
+    background-color: #3269c1;
+    color: white;
+}
+
+
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
     /* Hide captions */
