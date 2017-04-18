@@ -19,7 +19,7 @@ namespace WebApp.Repositories
 
         public IEnumerable<User> AllUsers()
         {
-            return Conn.User.Distinct();
+            return Conn.User.ToList();
         }
 
         public User GetUserById(int userId)
