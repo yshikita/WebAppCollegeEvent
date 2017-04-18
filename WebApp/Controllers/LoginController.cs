@@ -42,7 +42,7 @@ namespace WebApp.Controllers
             if (user != null)
             {
                 CookieOptions options = new CookieOptions() { Expires = DateTime.Now.AddMinutes(20) };
-                Response.Cookies.Append("User", user.ToString(), options);
+                Response.Cookies.Append("User", UserSerialization.SerializeUser(user), options);
 
                 return View("Pass");
             }
