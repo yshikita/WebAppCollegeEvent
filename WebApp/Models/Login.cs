@@ -38,7 +38,7 @@ namespace WebApp.Models
 
                 int? userId = parameters.Get<int?>("u");
 
-                UserRepository repo = new UserRepository(cont);
+                UserRepository repo = new UserRepository(conf, cont);
 
                 if (userId is null)
                     return null;
@@ -47,11 +47,6 @@ namespace WebApp.Models
                 return user;
             }
             
-        }
-
-        public override string ToString()
-        {
-            return Email + ";" + Password;
         }
     }
     
