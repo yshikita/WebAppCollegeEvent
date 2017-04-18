@@ -20,17 +20,18 @@ namespace WebApp.Models
         public int eStatusId { get; set; }
     }
 
-    //public class WebEvent
-    //{
-    //    public string Name { get; set; }
-    //    public DateTime Dt { get; set; }
-    //    public string Loc { get; set; }
-    //    public decimal Lati { get; set; }
-    //    public decimal Longi { get; set; }
-    //    public string Descr { get; set; }
-    //    public int Cat { get; set; }
-    //    public string Email { get; set; }
-    //    public string Phone { get; set; }
-    //    public int EventTypeId { get; set; }
-    //}
+    public class WebEvent
+    {
+        public string Name { get; set; }
+        public DateTime Dt { get; set; }
+        public int Dur { get; set; }
+        public string Loc { get; set; }
+        public decimal Lati { get; set; }
+        public decimal Longi { get; set; }
+        public string Descr { get; set; }
+        public int Cat { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public int EventTypeId { get; set; }
+    }
 }
