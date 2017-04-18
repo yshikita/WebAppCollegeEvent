@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace WebApp.Controllers
 {
-    public class RegisterController : Controller
+    public class RegisterController : BaseController
     {
         private readonly IConfigurationRoot config;
         private MySqlContext context;
@@ -28,6 +28,8 @@ namespace WebApp.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            SetUserData();
+
             var a = context.University.ToList();
             return View(new RegisterViewModel(a));
         }
@@ -49,6 +51,8 @@ namespace WebApp.Controllers
                         CookieOptions options = new CookieOptions() { Expires = DateTime.Now.AddMinutes(20) };
                         Response.Cookies.Delete("User");
                         Response.Cookies.Append("User", UserSerialization.SerializeUser(user), options);
+
+                        ViewData["User"] = user;
 
                         return RedirectToAction("Index","Login");
                     }

@@ -33,6 +33,11 @@ namespace WebApp.Repositories
             return Conn.User.Single(x => x.Id == userId);
         }
 
+        public User GetUserByEmail(string email)
+        {
+            return Conn.User.Where(x => x.Email == email).First();
+        }
+
         public User CreateUser(WebRegisterViewModel newUserInfo)
         {
             var sProc = "makeUser";

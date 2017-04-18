@@ -1,4 +1,4 @@
-﻿@model List<WebApp.Models.Event>
+﻿@model WebApp.ViewModels.HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -16,7 +16,7 @@
                 <th>Phone Number</th>
                 <th>Description</th>
             </tr>
-            @foreach (var e in Model)
+            @foreach (var e in Model.UpcomingEvents)
             {
                 <tr>
 

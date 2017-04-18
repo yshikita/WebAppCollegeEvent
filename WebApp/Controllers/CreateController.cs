@@ -13,7 +13,7 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
-    public class CreateController : Controller
+    public class CreateController : BaseController
     {
 
         private readonly IConfigurationRoot config;
@@ -32,23 +32,27 @@ namespace WebApp.Controllers
 
         public IActionResult Rso()
         {
+            SetUserData();
             return View();
         }
         
         public IActionResult University()
         {
-
+            SetUserData();
             return View();
         }
 
         public IActionResult Event()
         {
+            SetUserData();
             return View(context.Category.Distinct());
         }
 
         [HttpPost]
         public IActionResult MakeUniversity(WebUniversity uni)
         {
+            SetUserData();
+
             //Insert new info into University Table, and the Location Table
             string sProc = "makeUniversity";
             var s = config.GetConnectionString("MySqlDatabase");
@@ -73,6 +77,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult MakeEvent(WebEvent e)
         {
+            SetUserData();
+
             string sProc = "makeEvent";
             var s = config.GetConnectionString("MySqlDatabase");
 
@@ -100,7 +106,7 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult MakeRso(CreateRsoViewModel rso)
         {
-
+            SetUserData();
             return Ok();
         }
     }
