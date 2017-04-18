@@ -9,11 +9,10 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
         MySqlContext cont { get; set; }
-        User TheUser { get; set; }
 
         public HomeController(MySqlContext context)
         {
@@ -52,11 +51,6 @@ namespace WebApp.Controllers
             SetUserData();
             return View();
         }
-
-        private void SetUserData()
-        {
-            TheUser = UserSerialization.DeserializeUser(Request.Cookies["User"]);
-            ViewData["User"] = TheUser;
-        }
+        
     }
 }

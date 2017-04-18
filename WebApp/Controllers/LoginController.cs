@@ -14,7 +14,7 @@ using WebApp.Contexts;
 namespace WebApp.Controllers
 {
     [Authorize]
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         private readonly IConfigurationRoot config;
         private MySqlContext context;
@@ -28,6 +28,7 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            SetUserData();
             return View();
         }
 
@@ -66,11 +67,7 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         public IActionResult Test()
         {
-            var c = Request.Cookies["User"];
-
-            User user = UserSerialization.DeserializeUser(c);
-
-            ViewData["User"] = user;
+            SetUserData();
 
             return View("Pass");
         }
