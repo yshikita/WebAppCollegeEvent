@@ -9,6 +9,7 @@ using WebApp.Contexts;
 using Dapper;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -97,7 +98,7 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeRso(Rso rso)
+        public IActionResult MakeRso(CreateRsoViewModel rso)
         {
 
             return Ok();
