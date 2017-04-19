@@ -27,7 +27,7 @@ namespace WebApp.Controllers
         {
             SetUserData();
 
-            var s = isSuperAdmin();
+            var s = IsSuperAdmin();
 
             if (!s)
             {
@@ -40,7 +40,7 @@ namespace WebApp.Controllers
         public IActionResult Events()
         {
             SetUserData();
-            if (!isSuperAdmin())
+            if (!IsSuperAdmin())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -51,7 +51,7 @@ namespace WebApp.Controllers
         public IActionResult Rsos()
         {
             SetUserData();
-            if (!isSuperAdmin())
+            if (!IsSuperAdmin())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -62,7 +62,7 @@ namespace WebApp.Controllers
         public IActionResult Students()
         {
             SetUserData();
-            if (!isSuperAdmin())
+            if (!IsSuperAdmin())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -73,7 +73,7 @@ namespace WebApp.Controllers
         public IActionResult Universities()
         {
             SetUserData();
-            if (!isSuperAdmin())
+            if (!IsSuperAdmin())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -84,7 +84,7 @@ namespace WebApp.Controllers
         public IActionResult Approve(int Id)
         {
             SetUserData();
-            if (!isSuperAdmin())
+            if (!IsSuperAdmin())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -107,7 +107,7 @@ namespace WebApp.Controllers
         public IActionResult Deny(int Id)
         {
             SetUserData();
-            if (!isSuperAdmin())
+            if (!IsSuperAdmin())
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -127,7 +127,7 @@ namespace WebApp.Controllers
             return View("Events", context.Event.ToList());
         }
 
-        private bool isSuperAdmin()
+        private bool IsSuperAdmin()
         {
             if(TheUser == null)
             {
