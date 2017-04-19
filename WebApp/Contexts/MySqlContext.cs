@@ -32,7 +32,7 @@ namespace WebApp.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Category>().ToTable("Category").HasKey(x => x.Id);
-            builder.Entity<Event>().ToTable("Event").HasKey(x => x.Id);
+            builder.Entity<Event>().ToTable("EventWithInfo").HasKey(x => x.Id);
             builder.Entity<EventStatus>().ToTable("EventStatus").HasKey(x => x.Id);
             builder.Entity<EventType>().ToTable("EventType").HasKey(x => x.Id);
             builder.Entity<University>().ToTable("University").HasKey(x => x.Id);
