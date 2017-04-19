@@ -12,6 +12,7 @@
             <tr>
                 <th>Name Of Event</th>
                 <th>Date and Time</th>
+                <th>Duration</th>
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Description</th>
@@ -22,14 +23,18 @@
                 <tr>
 
                     <td>
-                        <a href="/Event/@e.Id">@e.Name</a>
+                        @Html.DisplayFor(modelItem => e.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => e.Date)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => e.Duration) minutes
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => e.Phone)
                     </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => e.email)
                     </td>
