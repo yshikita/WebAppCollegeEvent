@@ -4,42 +4,53 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Contexts;
+using WebApp.Models;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
 
-        MySqlContext cont { get; set; }
+        MySqlContext Cont { get; set; }
 
         public HomeController(MySqlContext context)
         {
-            cont = context;
+            Cont = context;
+            
         }
 
         public IActionResult Index()
         {
-            return View(cont.Event.ToList());
-            //return View();
+            SetUserData();
+            HomeViewModel vm = new HomeViewModel() { User = TheUser, UpcomingEvents = Cont.Event.Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddDays(7)).ToList() };
+
+            
+
+            return View(vm);
         }
 
         public IActionResult FindEvents()
         {
+            SetUserData();
             ViewData["Message"] = "Find Events Page";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult About()
         {
-            ViewData["Message"] = "Your contact page.";
+            SetUserData();
+            ViewData["Message"] = "Your About page.";
 
             return View();
         }
 
         public IActionResult Error()
         {
+            SetUserData();
             return View();
         }
+        
     }
 }

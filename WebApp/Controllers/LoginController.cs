@@ -14,7 +14,7 @@ using WebApp.Contexts;
 namespace WebApp.Controllers
 {
     [Authorize]
-    public class LoginController : Controller
+    public class LoginController : BaseController
     {
         private readonly IConfigurationRoot config;
         private MySqlContext context;
@@ -28,7 +28,16 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+            SetUserData();
             return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("User");
+            ViewData["User"] = null;
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -42,9 +51,11 @@ namespace WebApp.Controllers
             if (user != null)
             {
                 CookieOptions options = new CookieOptions() { Expires = DateTime.Now.AddMinutes(20) };
-                Response.Cookies.Append("User", user.ToString(), options);
+                Response.Cookies.Append("User", UserSerialization.SerializeUser(user), options);
 
-                return View("Pass");
+                ViewData["User"] = user;
+
+                return RedirectToAction("Index", "Home");
             }
 
             //return back to login page with error message
@@ -56,17 +67,7 @@ namespace WebApp.Controllers
         [AllowAnonymous]
         public IActionResult Test()
         {
-
-            User user = new User();
-            var c = Request.Cookies["User"].Split('~');
-
-            user.Id = int.Parse(c[0]);
-            user.FirstName = c[0];
-            user.LastName = c[0];
-            user.Email = c[0];
-            user.Password = c[0];
-            
-
+            SetUserData();
 
             return View("Pass");
         }

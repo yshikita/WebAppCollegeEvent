@@ -1,4 +1,4 @@
-﻿@model List<WebApp.Models.Event>
+﻿@model WebApp.ViewModels.HomeViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -6,12 +6,48 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h2>All Events</h2>
-        <ul>
-            @foreach (var e in Model)
+        <h2>Upcoming Events</h2>
+        <table style="width:800px; overflow:hidden" class="table table-bordered" >
+
+            <tr>
+                <th>Name Of Event</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Duration</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Description</th>
+            </tr>
+
+            @foreach (var e in Model.UpcomingEvents)
             {
-                <li><a href="">@e.Name @e.LocationId</a></li>
+                <tr>
+
+                    <td>
+                        @e.Name
+                    </td>
+                    <td>
+                        @e.Date.ToString("MM/dd/yyyy")
+                    </td>
+                    <td>
+                        @e.Date.ToString("hh:mm tt")
+                    </td>
+                    <td>
+                        @e.Duration
+                    </td>
+                    <td>
+                        @e.Phone
+                    </td>
+                    
+                    <td>
+                        @e.email
+                    </td>
+                    <td>
+                        @e.Description
+                    </td>
+
+                </tr>
             }
-        </ul>
+        </table>  
     </div>
 </div>

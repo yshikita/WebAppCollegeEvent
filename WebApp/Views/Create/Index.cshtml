@@ -1,0 +1,16 @@
+﻿@model WebApp.ViewModels.CreateIndexViewModel
+@{
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>What do you want to create?</h2>
+        <div><a asp-area="" asp-controller="Create" asp-action="Event">Create Event</a></div>
+        <div><a asp-area="" asp-controller="Create" asp-action="Rso">Create Rso</a></div>
+        @if (Model.IsSuperAdmin)
+        {
+            <div><a asp-area="" asp-controller="Create" asp-action="University">Create Uni Profile</a></div>
+        }
+        
+    </div>
+</div>

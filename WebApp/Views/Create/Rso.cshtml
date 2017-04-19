@@ -1,12 +1,30 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebApp.ViewModels.CreateRsoViewModel
 @{
     ViewData["Title"] = "Create RSO";
 }
 
 <br />
 <div class="container">
+
+    @{
+        if (ViewData["Status"] != null)
+        {
+            if (!ViewData["Status"].ToString().Contains("Failed"))
+            {
+                <div class="alert alert-primary">
+                    <strong>@ViewData["Status"]</strong>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger">
+                    <strong>@ViewData["Status"]</strong>
+                </div>
+            }
+
+        }
+    }
+
     <div class="col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
         <div class="panel" style="border: 1px solid lightgray;">
             <div class="panel-body">
@@ -17,20 +35,22 @@
                         <input type="text" class="form-control col-md-6" name="Name" />
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Admin Name:</label>
-                        <input type="text" class="form-control col-md-6" name="AdName" />
+                        <label class="control-label col-md-3">Admin Email:</label>
+                        <input type="text" class="form-control col-md-6" name="AdminEmail" />
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Admin Email:</label>
-                        <input type="text" class="form-control col-md-6" name="AdEmail" />
+                        <label class="control-label col-md-3">Number of Members:</label>
+                        <input type="number" min="5" class="form-control col-md-6" name="NumMemb"/>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3">Members:</label>
-                        <input type="text" class="form-control col-md-6" name="Memb" />
+                        <input type="text" class="form-control col-md-6" name="MemberEmails" />
+                        <span class="col-md-12"><label>Seperate Member Emails with a semicolon (;)</label></span>
                     </div>
+                    
                     <div class="form-group row">
                         <label class="control-label col-md-3">Description:</label>
-                        <input type="text" class="form-control col-md-6" name="Descr" />
+                        <input type="text" class="form-control col-md-6" name="Description" />
                     </div>
                     <button type="submit" class="btn btn-info" style="background-color:darkblue">Create</button>
                 </form>

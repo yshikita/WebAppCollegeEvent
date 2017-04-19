@@ -9,10 +9,12 @@ using WebApp.Contexts;
 using Dapper;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
+using WebApp.ViewModels;
+using WebApp.Repositories;
 
 namespace WebApp.Controllers
 {
-    public class CreateController : Controller
+    public class CreateController : BaseController
     {
 
         private readonly IConfigurationRoot config;
@@ -26,28 +28,33 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            SetUserData();
+            return View(new CreateIndexViewModel(TheUser));
         }
 
         public IActionResult Rso()
         {
+            SetUserData();
             return View();
         }
         
         public IActionResult University()
         {
-
+            SetUserData();
             return View();
         }
 
         public IActionResult Event()
         {
+            SetUserData();
             return View(context.Category.Distinct());
         }
 
         [HttpPost]
         public IActionResult MakeUniversity(WebUniversity uni)
         {
+            SetUserData();
+
             //Insert new info into University Table, and the Location Table
             string sProc = "makeUniversity";
             var s = config.GetConnectionString("MySqlDatabase");
@@ -72,6 +79,8 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult MakeEvent(WebEvent e)
         {
+            SetUserData();
+
             string sProc = "makeEvent";
             var s = config.GetConnectionString("MySqlDatabase");
 
@@ -97,10 +106,25 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeRso(Rso rso)
+        public IActionResult MakeRso(WebCreateRsoViewModel newRsoInfo)
         {
+            SetUserData();
 
-            return Ok();
+            RsoRepository rsoRepo = new RsoRepository(config, context);
+            var rso = rsoRepo.CreateRso(newRsoInfo);
+
+            if(rso != null)
+            {
+                ViewData["Status"] = "RSO: " + rso.Name + " was created";
+            }
+            else
+            {
+                ViewData["Status"] = "Failed to create your Rso";
+            }
+            
+
+            return View("Rso");
         }
+        
     }
 }
