@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebApp.Models.Rso>
+
+<div class="row">
+    <div class="col-md-12">
+        <table style="width:800px; overflow:hidden" class="table table-bordered">
+
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var e in Model)
+            {
+                <tr>
+
+                    <td>
+                        @e.Name
+                    </td>
+                    <td>
+                        @e.Description
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="Rso" asp-action="@("RsoDetails/" +e.Id)">Details</a>
+                    </td>
+
+                </tr>
+                            }
+        </table>
+    </div>
+</div>

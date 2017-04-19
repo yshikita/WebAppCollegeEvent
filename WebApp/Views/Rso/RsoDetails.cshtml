@@ -1,0 +1,18 @@
+﻿@model WebApp.ViewModels.RsoViewModel
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <h2>@Model.Rso.Name</h2>
+        <p>@Model.Rso.Description</p>
+        <div class="row">
+            <div>
+                <a asp-area="" asp-controller="Rso" asp-action="@("Join/" + Model.Rso.Id)">Join Us!</a>
+            </div>
+            <div>
+                <h3>Contact the Admin</h3>
+                <div><label>Email:</label>@Model.Admin.Email</div>
+            </div>
+        </div>
+    </div>
+</div>
