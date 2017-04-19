@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h2>All Events</h2>
+        <h2>Upcoming Events</h2>
         <table style="width:800px; overflow:hidden" class="table table-bordered" >
 
             <tr>
@@ -16,6 +16,7 @@
                 <th>Phone Number</th>
                 <th>Description</th>
             </tr>
+
             @foreach (var e in Model.UpcomingEvents)
             {
                 <tr>

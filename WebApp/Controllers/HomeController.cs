@@ -38,10 +38,10 @@ namespace WebApp.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult About()
         {
             SetUserData();
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "Your About page.";
 
             return View();
         }
