@@ -38,7 +38,7 @@ namespace WebApp.Controllers
             vm.Rso = context.Rso.Where(x => x.Id == Id).FirstOrDefault();
             int adminId = context.UserRso.Where(x => x.AccessLvlId == 1).FirstOrDefault().UserId;
             vm.Admin = userRepo.GetUserById(adminId);
-            var memberIds = context.UserRso.Where(x => x.RsoId == Id).Select(x => x.UserId).ToList();
+            var memberIds = context.UserRso.Where(x => x.RsoId == Id).Select(x => x.UserId).Distinct().ToList();
             vm.Members = userRepo.GetUsersByIds(memberIds);
 
             return View(vm);
