@@ -6,9 +6,22 @@
         <h2>@Model.Rso.Name</h2>
         <p>@Model.Rso.Description</p>
         <div class="row">
-            <div>
-                <a asp-area="" asp-controller="Rso" asp-action="@("Join/" + Model.Rso.Id)">Join Us!</a>
-            </div>
+
+            @{
+                var us = (WebApp.Models.User)ViewData["User"];
+                if (us != null)
+                {
+                    <div>
+                        <a asp-area="" asp-controller="Rso" asp-action="@("Join/" + Model.Rso.Id)">Join Us!</a>
+                    </div>
+                }
+                else
+                {
+                    <p>Please Log In to Join Us!</p>
+                }
+            }
+
+            
             <div>
                 <h3>Contact the Admin</h3>
                 <div><label>Email:</label>@Model.Admin.Email</div>

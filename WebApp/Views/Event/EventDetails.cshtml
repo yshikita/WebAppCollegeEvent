@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             
-            <label>Reviews</label>
+            <h3 class="col-md-12">Reviews</h3>
             @foreach(var r in Model.Reviews)
             {
                 <div class="col-md-3">
@@ -50,23 +50,38 @@
                     <p>@r.Comment</p>
                 </div>
             }
-
+        </div>
+        <div class="row">
             <label>Leave a review</label>
             <form class="form-horizontal row" asp-controller="Event" asp-action="CommentReview" method="post">
 
-                <div class="form-group row">
-                    <label class="control-label col-md-3">Rate us:</label>
-                    <input type="number" min="1" max="5" class="form-control col-md-6" name="Rating" />
-                </div>
+                @{
+                    var u = (WebApp.Models.User)ViewData["User"];
+                    if (u != null)
+                    {
+                        <div class="form-group row">
+                            <label class="control-label col-md-3">Rate us:</label>
+                            <input type="number" min="1" max="5" class="form-control col-md-6" name="Rating" />
+                        </div>
 
-                <div class="form-group row">
-                    <label class="control-label col-md-3">Leave a Comment:</label>
-                    <input type="text" class="form-control col-md-6" name="Comment" />
-                </div>
+                            <div class="form-group row">
+                                <label class="control-label col-md-3">Leave a Comment:</label>
+                                <input type="text" class="form-control col-md-6" name="Comment" />
+                            </div>
 
-                <input type="hidden" value="@Model.Event.Id" name="EventId"/>
+                            <input type="hidden" value="@Model.Event.Id" name="EventId" />
 
-                <button type="submit" class="btn btn-info" style="background-color:darkblue">Create</button>
+                            <button type="submit" class="btn btn-info" style="background-color:darkblue">Create</button>
+                    }
+                    else
+                    {
+                        <p>Please Log In to leave a Review</p>
+
+                    }
+
+
+                }
+
             </form>
         </div>
     </div>
