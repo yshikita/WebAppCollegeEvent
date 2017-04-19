@@ -26,10 +26,11 @@ namespace WebApp.Models
              */
             //var s = conf.GetConnectionString("MySqlDatabase");
             string s = conf.GetConnectionString("MySqlDatabase");
-
+            PasswordHasher ph = new PasswordHasher();
+            string hashedpw = ph.getHash(Password);
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("e", Email);
-            parameters.Add("p", Password);
+            parameters.Add("p", hashedpw);
             parameters.Add("u", 0, direction: System.Data.ParameterDirection.Output);
 
             using (var con = new MySqlConnection(s))
