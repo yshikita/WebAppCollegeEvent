@@ -32,21 +32,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WebApp</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="FindEvents">Find Events</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    @*@if (Model.UserTypeId == 1)
-                    {
-                        <li><a asp-area="" asp-controller="Create" asp-action="University">Create Uni Profile</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
+
+                    @{
+                        var u = (WebApp.Models.User)ViewData["User"];
+                        if (u != null)
+                        {
+                            <li><a asp-area="" asp-controller="Create" asp-action="Index">Create</a></li>
+                        }
                     }
-                    @if (Model.UserTypeId == 2)
-                    {
-                        <li><a asp-area="" asp-controller="Create" asp-action="Event">Create Event</a></li>
-                    }*@
+
                 </ul>
 @*<<<<<<< HEAD
                 <ul class="nav navbar-nav pull-right">
@@ -54,21 +54,20 @@
                 </ul>
 =======*@
                 
-
                 @{
-                    var u = (WebApp.Models.User)ViewData["User"];
                     if (u != null)
                     {
-                        <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Logout" asp-controller="Login">Log Out</a></li></ul>
+                        <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Logout" asp-controller="Login" style="border-left: 2px solid gray; border-right: 2px solid gray">Log Out</a></li></ul>
                     }
                     else
                     {
-                        <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Index" asp-controller="Login">Log In</a></li></ul>
+                        <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Index" asp-controller="Login" style="border-left: 2px solid gray; border-right: 2px solid gray">Log In</a></li></ul>
                     }
                 }
             </div>
         </div>
     </nav>
+    @*<img src="~/images/banner.png" />*@
     <div class="container body-content">
         @RenderBody()
         <hr />

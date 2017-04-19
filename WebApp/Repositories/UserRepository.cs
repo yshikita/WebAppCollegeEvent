@@ -35,7 +35,7 @@ namespace WebApp.Repositories
 
         public User GetUserByEmail(string email)
         {
-            return Conn.User.Where(x => x.Email == email).First();
+            return Conn.User.Where(x => x.Email == email).FirstOrDefault();
         }
 
         public User CreateUser(WebRegisterViewModel newUserInfo)

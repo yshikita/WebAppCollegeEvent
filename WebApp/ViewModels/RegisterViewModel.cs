@@ -10,7 +10,7 @@ namespace WebApp.ViewModels
     {
 
         public IEnumerable<University> Universities { get; set; }
-        public bool didRegFail { get; set; } 
+        public bool DidRegFail { get; set; } 
 
         public RegisterViewModel(IEnumerable<University> unis)
         {

@@ -10,6 +10,7 @@ using Dapper;
 using MySql.Data.MySqlClient;
 using Microsoft.Extensions.Configuration;
 using WebApp.ViewModels;
+using WebApp.Repositories;
 
 namespace WebApp.Controllers
 {
@@ -27,6 +28,7 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
+            SetUserData();
             return View();
         }
 
@@ -104,10 +106,25 @@ namespace WebApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult MakeRso(CreateRsoViewModel rso)
+        public IActionResult MakeRso(WebCreateRsoViewModel newRsoInfo)
         {
             SetUserData();
-            return Ok();
+
+            RsoRepository rsoRepo = new RsoRepository(config, context);
+            var rso = rsoRepo.CreateRso(newRsoInfo);
+
+            if(rso != null)
+            {
+                ViewData["Status"] = "RSO: " + rso.Name + " was created";
+            }
+            else
+            {
+                ViewData["Status"] = "Failed to create your Rso";
+            }
+            
+
+            return View("Rso");
         }
+        
     }
 }

@@ -55,7 +55,7 @@ namespace WebApp.Controllers
 
                 ViewData["User"] = user;
 
-                return View("Pass");
+                return RedirectToAction("Index", "Home");
             }
 
             //return back to login page with error message

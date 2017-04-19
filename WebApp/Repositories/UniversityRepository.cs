@@ -22,5 +22,11 @@ namespace WebApp.Repositories
             return Conn.University.ToList();
         }
 
+        public University GetByDomain(string domain)
+        {
+            domain = domain.Trim('@').Trim();
+            return Conn.University.Where(x => x.Domain == domain).FirstOrDefault();
+        }
+
     }
 }

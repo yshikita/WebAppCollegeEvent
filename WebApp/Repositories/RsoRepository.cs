@@ -44,27 +44,66 @@ namespace WebApp.Repositories
             var s = Conf.GetConnectionString("MySqlDatabase");
 
             DynamicParameters parameters = new DynamicParameters();
-            parameters.Add("u", userId);
-            parameters.Add("r", rsoId);
-            parameters.Add("a", 2);
+            parameters.Add("userId", userId);
+            parameters.Add("rsoId", rsoId);
+            parameters.Add("accessId", 2);
+
+            using (var con = new MySqlConnection(s))
+            {
+                con.Execute(sProc, parameters, commandTimeout: 120, commandType: System.Data.CommandType.StoredProcedure);
+            }
         }
 
-        public Rso CreateRso(CreateRsoViewModel newRsoInfo)
+        public Rso CreateRso(WebCreateRsoViewModel newRsoInfo)
         {
             var sProc = "makeRso";
             var s = Conf.GetConnectionString("MySqlDatabase");
+            var userRepo = new UserRepository(Conf, Conn);
 
             var mems = newRsoInfo.MemberEmails.Split(';');
+            HashSet<string> domains = new HashSet<string>();
+            List<User> members = new List<User>();
+
+            for (int i = 0; i < mems.Length; i++)
+            {
+                mems[i] = mems[i].Trim();
+
+                domains.Add(mems[i].Split('@')[1]);
+                var u = userRepo.GetUserByEmail(mems[i]);
+
+                if(u != null)
+                {
+                    members.Add(u);
+                }
+                
+            }
+
+            domains.Add(newRsoInfo.AdminEmail.Split('@')[1]);
+            User adminUser = userRepo.GetUserByEmail(newRsoInfo.AdminEmail);
+            
+
+            if (domains.Count > 1 || domains.Count <= 0 || members.Count < 4)
+            {
+                return null;
+            }
+
+            University uni = new UniversityRepository(Conn).GetByDomain(domains.First());
+            
+
+            if (Conn.Rso.Where(x => x.UniversityId == uni.Id && x.Name == newRsoInfo.Name).Count() > 0)
+            {
+                return null;
+            }
 
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("n", newRsoInfo.Name);
-            parameters.Add("u", newRsoInfo.UniversityId);
+            parameters.Add("u", uni.Id);
             parameters.Add("d", newRsoInfo.Description);
-            parameters.Add("a", newRsoInfo.AdminEmail);
-            parameters.Add("s", mems[0]);
-            parameters.Add("ss", mems[1]);
-            parameters.Add("sss", mems[2]);
-            parameters.Add("ssss", mems[3]);
+            parameters.Add("a", adminUser.Id);
+            parameters.Add("s", members[0].Id);
+            parameters.Add("ss", members[1].Id);
+            parameters.Add("sss", members[2].Id);
+            parameters.Add("ssss", members[3].Id);
             parameters.Add("r", -1, direction: System.Data.ParameterDirection.InputOutput);
 
             using (var con = new MySqlConnection(s))
@@ -78,12 +117,11 @@ namespace WebApp.Repositories
                 var rso = GetRsoById(rsoId.Value);
 
 
-                if(mems.Length > 3)
+                if (members.Count > 4)
                 {
-                    var userRepo = new UserRepository(Conf, Conn);
-                    for(int i = 3; i < mems.Length; i++)
+                    for (int i = 4; i < members.Count; i++)
                     {
-                        AddUserToRso(userRepo.GetUserByEmail(mems[i]), rso.Id);
+                        AddUserToRso(members[i], rso.Id);
                     }
                 }
 

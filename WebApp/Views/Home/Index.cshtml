@@ -6,29 +6,35 @@
 
 <div class="row">
     <div class="col-md-3">
-        <h2>All Events</h2>
+        <h2>Upcoming Events</h2>
         <table style="width:800px; overflow:hidden" class="table table-bordered" >
 
             <tr>
                 <th>Name Of Event</th>
                 <th>Date and Time</th>
+                <th>Duration</th>
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Description</th>
             </tr>
+
             @foreach (var e in Model.UpcomingEvents)
             {
                 <tr>
 
                     <td>
-                        <a href="/Event/@e.Id">@e.Name</a>
+                        @Html.DisplayFor(modelItem => e.Name)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => e.Date)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => e.Duration) minutes
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => e.Phone)
                     </td>
+                    
                     <td>
                         @Html.DisplayFor(modelItem => e.email)
                     </td>
