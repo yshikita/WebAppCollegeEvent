@@ -47,7 +47,15 @@ namespace WebApp.Controllers
         public IActionResult Event()
         {
             SetUserData();
-            return View(context.Category.Distinct());
+            var rsoRepo = new RsoRepository(config, context);
+            var uniRepo = new UniversityRepository(context);
+
+            var categories = context.Category.ToList();
+            var eventTypes = context.EventType.ToList();
+
+            var e = new CreateEventViewModel() { EventCategories = categories, User = TheUser, Rsos = rsoRepo.GetRsosForUser(TheUser), University = uniRepo.GetByDomain(TheUser.Email.Split('@')[1]), EventTypes = eventTypes };
+
+            return View(e);
         }
 
         [HttpPost]

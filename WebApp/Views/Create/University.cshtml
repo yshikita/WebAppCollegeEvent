@@ -4,12 +4,52 @@
 @{
     ViewData["Title"] = "Create University";
 }
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyvIknYUBz1-fvFHD8K-frVIT4wrdyj7A&callback=initMap"
+        type="text/javascript"></script>
 
-<br />
+@section scripts {
+    <section class="scripts">
+
+        <script type="text/javascript">
+    $(document).ready(function () {
+        Initialize();
+    });
+
+    function Initialize() {
+        google.maps.visualRefresh = true;
+            var Location = new google.maps.LatLng(28.6024, -81.2001);
+
+        // These are options that set initial zoom level, where the map is centered globally to start, and the type of map to show
+        var mapOptions = {
+            zoom: 17,
+            center: Location,
+            mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+        };
+
+        var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+            var marker = new google.maps.Marker({
+                'draggable': true,
+                'position': Location,
+                'map': map,
+                'title': "Current Location"
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                document.getElementById("Lati").value = this.getPosition().lat().toFixed(6);
+                document.getElementById("Longi").value = this.getPosition().lng().toFixed(6);
+
+            });
+
+    }
+        </script>
+    </section>
+}
 <div class="container">
     <div class="col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
         <div class="panel" style="border: 1px solid lightgray;">
             <div class="panel-body">
+                <div id="map_canvas" style="height: 200px;"></div>
                 <form class="form-horizontal row" asp-controller="Create" asp-action="MakeUniversity" method="post">
                     <h1 style="color:darkblue">Create University</h1>
                     <div class="form-group">
@@ -21,12 +61,12 @@
                         <input type="text" class="form-control col-md-6" name="Abbrev"/>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Location Latitude:</label>
-                        <input type="number" step="0.000001" class="form-control col-md-6" name="Lati" />
+                        <label class="control-label col-md-3">Latitude:</label>
+                        <input type="number" step="0.000001" class="form-control col-md-6" name="Lati" id="Lati"/>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Location Longitude:</label>
-                        <input type="number" step="0.000001" class="form-control col-md-6" name="Longi" />
+                        <label class="control-label col-md-3">Longitude:</label>
+                        <input type="number" step="0.000001" class="form-control col-md-6" name="Longi" id="Longi"/>
                     </div>
                     <div class="form-group row">
                         <label class="control-label col-md-3">Number of Students:</label>
