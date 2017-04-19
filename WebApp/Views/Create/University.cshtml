@@ -35,13 +35,6 @@
                 'title': "Current Location"
             });
 
-            google.maps.event.addListener(map, "rightclick", function (event) {
-                var lat = event.latLng.lat();
-                var lng = event.latLng.lng();
-                // populate yor box/field with lat, lng
-                alert("Lat=" + lat + "; Lng=" + lng);
-            });
-
             google.maps.event.addListener(marker, 'dragend', function (event) {
                 document.getElementById("Lati").value = this.getPosition().lat().toFixed(6);
                 document.getElementById("Longi").value = this.getPosition().lng().toFixed(6);

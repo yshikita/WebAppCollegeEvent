@@ -9,6 +9,7 @@ using Dapper;
 using Microsoft.Extensions.Configuration;
 using MySql.Data.MySqlClient;
 
+
 namespace WebApp.Repositories
 {
     public class UserRepository
@@ -43,11 +44,15 @@ namespace WebApp.Repositories
             var sProc = "makeUser";
             var s = Conf.GetConnectionString("MySqlDatabase");
 
+            PasswordHasher ph = new PasswordHasher();
+
+            string hashedpw = ph.getHash(newUserInfo.Password);
+
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("f", newUserInfo.FirstName);
             parameters.Add("l", newUserInfo.LastName);
             parameters.Add("e", newUserInfo.Email);
-            parameters.Add("p", newUserInfo.Password);
+            parameters.Add("p", hashedpw);
             parameters.Add("s", 1);
             parameters.Add("u", 0, direction: System.Data.ParameterDirection.Output);
 

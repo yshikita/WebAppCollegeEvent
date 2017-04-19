@@ -11,39 +11,32 @@
             <div class="panel-body">
                 <form class="form-horizontal row" asp-controller="Create" asp-action="MakeEvent" method="post">
                     <h1 style="color:darkblue">Create Event</h1>
-                    <div class="form-group row">
+                    <div class="form-group">
                         <label class="control-label col-md-3">Name:</label>
                         <input type="text" class="form-control col-md-6" name="Name" />
                     </div>
 
-                    <div class="form-group row">
-                        <div class="control-label col-md-6">
-                            <label class="control-label">Event Type:</label>
-                            <select class="form-control" name="EventTypeId">
-                                @{
-                                    foreach (var e in Model.EventTypes)
-                                    {
-                                        <option value="@e.Id">@e.Type</option>
-                                    }
-                                }
-                            </select>
-                        </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Event Type:</label>
+                        <select name="EventTypeId">
+                            <option value="1">Public</option>
+                            <option value="2">Private</option>
+                            <option value="3">RSO</option>
+                        </select>
                     </div>
 
-                    @*NEED TO SHOW/HIDE THIS CONTROL BASED ON THE EVENT TYPE DROPDOWN*@
-                    <div class="form-group row">
-                        <div class="col-md-6">
-                            <label class="control-label">Rso:</label>
-                            <select class="form-control" name="RsoId">
-                                @{
-                                    foreach (var r in Model.Rsos)
-                                    {
-                                        <option value="@r.Id">@r.Name</option>
+                    <label>NEED TO SHOW.HIDE THIS BASED ON THE EVENT TYPE DROPDOWN</label>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Rso:</label>
+                        <select name="RsoId">
+                            @{ 
+                                foreach(var r in Model.Rsos)
+                                {
+                                    <option value="@r.Id">@r.Name</option>
 
-                                    }
                                 }
-                            </select>
-                        </div>
+                            }
+                        </select>
                     </div>
 
                     <div class="form-group row">
@@ -52,10 +45,10 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-md-3">Duration(in minutes):</label>
-                        <input type="number" class="form-control col-md-6" name="Dur" />
+                        <label class="control-label col-md-3">Duration:</label>
+                        <input type="number" min="0" class="form-control col-md-3" name="Dur" />
+                        <label class="control-label col-md-1">minutes.</label>
                     </div>
-
                     <div class="form-group row">
                         <label class="control-label col-md-3">Location:</label>
                         <input type="text" class="form-control col-md-6" name="Loc" />
@@ -77,15 +70,12 @@
                     </div>
 
                     <div class="form-group row">
-                        <div class="col-md-6">
-                            <label class="control-label">Category:</label>
-                            <select class="form-control" name="Cat">
-                                @foreach (var c in Model.EventCategories)
-                                {
-                                    <option value="@c.Id">@c.Type</option>
-                                }
-                            </select>
-                        </div>
+                        <label class="control-label col-md-3">Category:</label>
+                        <select name="Cat">
+                            @foreach(var c in Model.EventCategories){
+                            <option value="@c.Id">@c.Type</option>
+                            }
+                        </select>
                     </div>
 
                     <div class="form-group row">
