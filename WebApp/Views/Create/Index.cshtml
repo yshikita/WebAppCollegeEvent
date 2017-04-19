@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model WebApp.ViewModels.CreateIndexViewModel
 @{
 }
 
@@ -9,6 +7,10 @@
         <h2>What do you want to create?</h2>
         <div><a asp-area="" asp-controller="Create" asp-action="Event">Create Event</a></div>
         <div><a asp-area="" asp-controller="Create" asp-action="Rso">Create Rso</a></div>
-        <div><a asp-area="" asp-controller="Create" asp-action="University">Create Uni Profile</a></div>
+        @if (Model.IsSuperAdmin)
+        {
+            <div><a asp-area="" asp-controller="Create" asp-action="University">Create Uni Profile</a></div>
+        }
+        
     </div>
 </div>

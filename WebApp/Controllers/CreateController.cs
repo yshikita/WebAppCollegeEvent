@@ -29,7 +29,7 @@ namespace WebApp.Controllers
         public IActionResult Index()
         {
             SetUserData();
-            return View();
+            return View(new CreateIndexViewModel(TheUser));
         }
 
         public IActionResult Rso()
