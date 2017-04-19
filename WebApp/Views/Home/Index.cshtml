@@ -11,6 +11,8 @@
 
             <tr>
                 <th>Name Of Event</th>
+                <th>Location</th>
+                <th>Category</th>
                 <th>Date</th>
                 <th>Time</th>
                 <th>Duration</th>
@@ -25,6 +27,12 @@
 
                     <td>
                         @e.Name
+                    </td>
+                    <td>
+                        @e.LocationName
+                    </td>
+                    <td>
+                        @e.CategoryType
                     </td>
                     <td>
                         @e.Date.ToString("MM/dd/yyyy")

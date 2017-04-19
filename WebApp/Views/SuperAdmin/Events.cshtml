@@ -7,7 +7,9 @@
             <tr>
                 <th>Id</th>
                 <th>LocationId</th>
+                <th>Location</th>
                 <th>CategoryId</th>
+                <th>Category</th>
                 <th>eTypeId</th>
                 <th>Duration</th>
                 <th>Name</th>
@@ -29,7 +31,13 @@
                         @e.LocationId
                     </td>
                     <td>
+                        @e.LocationName
+                    </td>
+                    <td>
                         @e.CategoryId
+                    </td>
+                    <td>
+                        @e.CategoryType
                     </td>
                     <td>
                         @{
