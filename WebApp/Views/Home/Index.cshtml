@@ -11,7 +11,8 @@
 
             <tr>
                 <th>Name Of Event</th>
-                <th>Date and Time</th>
+                <th>Date</th>
+                <th>Time</th>
                 <th>Duration</th>
                 <th>Email</th>
                 <th>Phone Number</th>
@@ -23,23 +24,26 @@
                 <tr>
 
                     <td>
-                        @Html.DisplayFor(modelItem => e.Name)
+                        @e.Name
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => e.Date)
+                        @e.Date.ToString("MM/dd/yyyy")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => e.Duration) minutes
+                        @e.Date.ToString("hh:mm tt")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => e.Phone)
+                        @e.Duration
+                    </td>
+                    <td>
+                        @e.Phone
                     </td>
                     
                     <td>
-                        @Html.DisplayFor(modelItem => e.email)
+                        @e.email
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => e.Description)
+                        @e.Description
                     </td>
 
                 </tr>
