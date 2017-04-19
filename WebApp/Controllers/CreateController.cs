@@ -110,7 +110,7 @@ namespace WebApp.Controllers
                 con.Execute(sProc, parameters, commandTimeout: 120, commandType: System.Data.CommandType.StoredProcedure);
             }
 
-            return Ok();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]

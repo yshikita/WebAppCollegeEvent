@@ -32,7 +32,20 @@
                         @e.CategoryId
                     </td>
                     <td>
-                        @e.eTypeId
+                        @{
+                            if (e.eTypeId == 1)
+                            {
+                                <span>Private</span>
+                            }
+                            else if (e.eTypeId == 2)
+                            {
+                                <span>Public</span>
+                            }
+                            else if (e.eTypeId == 3)
+                            {
+                                <span>RSO</span>
+                            }
+                        }
                     </td>
                     <td>
                         @e.Duration
