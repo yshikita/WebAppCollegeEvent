@@ -14,9 +14,5 @@ namespace WebApp.ViewModels
         public IEnumerable<Rso> Rsos{ get; set; }
         public IEnumerable<EventType> EventTypes { get; set; }
     }
-
-    public class WebCreateEventViewModel
-    {
-
-    }
+    
 }
