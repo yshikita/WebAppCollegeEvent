@@ -1,0 +1,73 @@
+﻿@model WebApp.ViewModels.EventViewModel
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <h2>@Model.Event.Name</h2>
+        <p>@Model.Event.Description</p>
+        <div class="row">
+            <label>Event Info</label>
+
+            <div>
+                <div>Where: @Model.Event.LocationName</div>
+                <div>When: @Model.Event.Date.ToString("MM/dd/yyyy") at @Model.Event.Date.ToString("hh:mm tt")</div>
+                <div>Why: @Model.Event.CategoryType</div>
+                <div>How Long: @Model.Event.Duration minutes</div>
+
+                @{
+                    if (Model.Event.eTypeId == 1)
+                    {
+                        <div>For: Everyone</div>
+                    }
+                    else if (Model.Event.eTypeId == 2)
+                    {
+                        <div>For: Our University Only</div>
+                    }
+                    else if (Model.Event.eTypeId == 3)
+                    {
+                        <div>For: Our Club Only</div>
+                    }
+                }
+
+
+            </div>
+
+            <div>
+                <h3>Contact the Organizer</h3>
+                <div><label>Phone:</label>@Model.Event.Phone</div>
+                <div><label>Email:</label>@Model.Event.Email</div>
+            </div>
+        </div>
+        <div class="row">
+            
+            <label>Reviews</label>
+            @foreach(var r in Model.Reviews)
+            {
+                <div class="col-md-3">
+                    <label>Stars: @r.Rating</label>
+                </div>
+                <div class="col-md-7">
+                    <p>@r.Comment</p>
+                </div>
+            }
+
+            <label>Leave a review</label>
+            <form class="form-horizontal row" asp-controller="Event" asp-action="CommentReview" method="post">
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Rate us:</label>
+                    <input type="number" min="0" max="5" class="form-control col-md-6" name="Rating" />
+                </div>
+
+                <div class="form-group row">
+                    <label class="control-label col-md-3">Leave a Comment:</label>
+                    <input type="text" class="form-control col-md-6" name="Comment" />
+                </div>
+
+                <input type="hidden" value="@Model.Event.Id" name="EventId"/>
+
+                <button type="submit" class="btn btn-info" style="background-color:darkblue">Create</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<WebApp.Models.Event>
+
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <h2>Find an event!</h2>
+        
+        @foreach (var e in Model)
+        {
+            <div>
+                <a asp-area="" asp-controller="Event" asp-action="@("EventDetails/" +e.Id)">@e.Name</a>
+            </div>
+        }
+
+
+    </div>
+</div>
