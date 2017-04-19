@@ -88,6 +88,12 @@ namespace WebApp.Repositories
             }
 
             University uni = new UniversityRepository(Conn).GetByDomain(domains.First());
+            
+
+            if (Conn.Rso.Where(x => x.UniversityId == uni.Id && x.Name == newRsoInfo.Name).Count() > 0)
+            {
+                return null;
+            }
 
             DynamicParameters parameters = new DynamicParameters();
             parameters.Add("n", newRsoInfo.Name);

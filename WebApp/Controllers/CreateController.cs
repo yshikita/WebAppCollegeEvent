@@ -111,9 +111,19 @@ namespace WebApp.Controllers
             SetUserData();
 
             RsoRepository rsoRepo = new RsoRepository(config, context);
-            rsoRepo.CreateRso(newRsoInfo);
+            var rso = rsoRepo.CreateRso(newRsoInfo);
 
-            return Ok();
+            if(rso != null)
+            {
+                ViewData["Status"] = "RSO: " + rso.Name + " was created";
+            }
+            else
+            {
+                ViewData["Status"] = "Failed to create your Rso";
+            }
+            
+
+            return View("Rso");
         }
         
     }
