@@ -61,7 +61,7 @@ namespace WebApp.Controllers
 
             }
 
-            return View("Index", new RegisterViewModel(context.University.ToList()) { didRegFail = true });
+            return View("Index", new RegisterViewModel(context.University.ToList()) { DidRegFail = true });
         }
     }
 }

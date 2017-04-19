@@ -39,19 +39,19 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="FindEvents">Find Events</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                    @*@if (Model.UserTypeId == 1)
-                    {
-                        <li><a asp-area="" asp-controller="Create" asp-action="University">Create Uni Profile</a></li>
+
+                    @{
+                        var u = (WebApp.Models.User)ViewData["User"];
+                        if (u != null)
+                        {
+                            <li><a asp-area="" asp-controller="Create" asp-action="Index">Create</a></li>
+                        }
                     }
-                    @if (Model.UserTypeId == 2)
-                    {
-                        <li><a asp-area="" asp-controller="Create" asp-action="Event">Create Event</a></li>
-                    }*@
+
                 </ul>
                 
 
                 @{
-                    var u = (WebApp.Models.User)ViewData["User"];
                     if (u != null)
                     {
                         <ul class="nav navbar-nav pull-right"><li><a asp-area="" asp-action="Logout" asp-controller="Login">Log Out</a></li></ul>

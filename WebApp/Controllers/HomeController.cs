@@ -12,18 +12,18 @@ namespace WebApp.Controllers
     public class HomeController : BaseController
     {
 
-        MySqlContext cont { get; set; }
+        MySqlContext Cont { get; set; }
 
         public HomeController(MySqlContext context)
         {
-            cont = context;
+            Cont = context;
             
         }
 
         public IActionResult Index()
         {
             SetUserData();
-            HomeViewModel vm = new HomeViewModel() { User = TheUser, UpcomingEvents = cont.Event.Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddDays(7)).ToList() };
+            HomeViewModel vm = new HomeViewModel() { User = TheUser, UpcomingEvents = Cont.Event.Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddDays(7)).ToList() };
 
             
 
