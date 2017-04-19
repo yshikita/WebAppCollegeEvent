@@ -6,9 +6,8 @@
         <h2>Find an event!</h2>
         
         @foreach (var e in Model)
-        {
-            <div>
-                <a asp-area="" asp-controller="Event" asp-action="@("EventDetails/" +e.Id)">@e.Name</a>
+        {   <div>
+            <a href="Event/EventDetails/@e.Id">@e.Name</a>
             </div>
         }
 

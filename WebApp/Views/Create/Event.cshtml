@@ -72,7 +72,8 @@
                         <select name="RsoId">
                             @{ 
                                 foreach(var r in Model.Rsos)
-                                {
+                                {   
+                                    <option value="null"></option>
                                     <option value="@r.Id">@r.Name</option>
 
                                 }
