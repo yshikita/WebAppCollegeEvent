@@ -28,6 +28,20 @@ namespace WebApp.Repositories
             return Conn.Rso.ToList();
         }
 
+        public IEnumerable<Rso> GetRsosForUser(User user)
+        {
+            var usersRsos = Conn.UserRso.Where(x => x.UserId == user.Id).ToList();
+
+            List<Rso> rsos = new List<Rso>();
+
+            foreach (var r in usersRsos)
+            {
+                rsos.Add(GetRsoById(r.RsoId));
+            }
+
+            return rsos;
+        }
+
         public Rso GetRsoById(int rsoId)
         {
             return Conn.Rso.Single(x => x.Id == rsoId);

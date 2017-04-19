@@ -12,6 +12,7 @@ namespace WebApp.ViewModels
         public User User { get; set; }
         public University University { get; set; }
         public IEnumerable<Rso> Rsos{ get; set; }
+        public IEnumerable<EventType> EventTypes { get; set; }
     }
 
     public class WebCreateEventViewModel
