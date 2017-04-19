@@ -39,6 +39,18 @@ namespace WebApp.Repositories
             return Conn.User.Where(x => x.Email == email).FirstOrDefault();
         }
 
+        public IEnumerable<User> GetUsersByIds(IEnumerable<int> userIds)
+        {
+            List<User> users = new List<User>(userIds.Count());
+            
+            foreach(var u in userIds)
+            {
+                users.Add(GetUserById(u));
+            }
+
+            return users;
+        }
+
         public User CreateUser(WebRegisterViewModel newUserInfo)
         {
             var sProc = "makeUser";

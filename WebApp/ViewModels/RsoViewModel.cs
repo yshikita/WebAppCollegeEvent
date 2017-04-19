@@ -10,6 +10,6 @@ namespace WebApp.ViewModels
     {
         public Rso Rso { get; set; }
         public User Admin { get; set; }
-        public IEnumerable<UserRso> Members { get; set; }
+        public IEnumerable<User> Members { get; set; }
     }
 }

@@ -13,6 +13,18 @@
                 <h3>Contact the Admin</h3>
                 <div><label>Email:</label>@Model.Admin.Email</div>
             </div>
+
+            <div>
+                <h3>Our Members</h3>
+                @foreach (var u in Model.Members)
+                {
+                    <div class="col-md-4 alert alert-warning">
+                        <div><label>First Name:</label>@u.FirstName</div>
+                        <div><label>Last Name:</label>@u.LastName</div>
+                        <div><label>Email:</label>@u.Email</div>
+                    </div>
+                }
+            </div>
         </div>
     </div>
 </div>

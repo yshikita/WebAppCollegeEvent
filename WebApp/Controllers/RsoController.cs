@@ -32,11 +32,14 @@ namespace WebApp.Controllers
         {
             SetUserData();
 
+            UserRepository userRepo = new UserRepository(config, context);
+
             RsoViewModel vm = new RsoViewModel();
             vm.Rso = context.Rso.Where(x => x.Id == Id).FirstOrDefault();
             int adminId = context.UserRso.Where(x => x.AccessLvlId == 1).FirstOrDefault().UserId;
-            vm.Admin = context.User.Where(x => x.Id == adminId).FirstOrDefault();
-            vm.Members = context.UserRso.Where(x => x.AccessLvlId == 2).ToList();
+            vm.Admin = userRepo.GetUserById(adminId);
+            var memberIds = context.UserRso.Where(x => x.RsoId == Id).Select(x => x.UserId).ToList();
+            vm.Members = userRepo.GetUsersByIds(memberIds);
 
             return View(vm);
         }
