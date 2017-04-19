@@ -101,7 +101,7 @@ namespace WebApp.Controllers
                 con.Execute(sProc, parameters, commandTimeout: 120, commandType: System.Data.CommandType.StoredProcedure);
             }
 
-            return View("Events");
+            return View("Events", context.Event.ToList());
         }
 
         public IActionResult Deny(int Id)
@@ -124,7 +124,7 @@ namespace WebApp.Controllers
                 con.Execute(sProc, parameters, commandTimeout: 120, commandType: System.Data.CommandType.StoredProcedure);
             }
 
-            return View("Events");
+            return View("Events", context.Event.ToList());
         }
 
         private bool isSuperAdmin()
