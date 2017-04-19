@@ -23,7 +23,7 @@ namespace WebApp.Controllers
         public IActionResult Index()
         {
             SetUserData();
-            HomeViewModel vm = new HomeViewModel() { User = TheUser, UpcomingEvents = Cont.Event.Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddDays(7)).ToList() };
+            HomeViewModel vm = new HomeViewModel() { User = TheUser, UpcomingEvents = Cont.Event.Where(x => x.Date > DateTime.Now && x.Date < DateTime.Now.AddDays(7) && x.eStatusId == 1).ToList() };
 
             
 

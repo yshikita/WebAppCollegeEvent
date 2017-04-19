@@ -1,0 +1,78 @@
+﻿@model IEnumerable<WebApp.Models.Event>
+
+<div class="row">
+    <div class="col-md-12">
+        <table style="width:800px; overflow:hidden" class="table table-bordered">
+
+            <tr>
+                <th>Id</th>
+                <th>LocationId</th>
+                <th>CategoryId</th>
+                <th>eTypeId</th>
+                <th>Duration</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>eStatusId</th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var e in Model)
+            {
+                <tr>
+
+                    <td>
+                        @e.Id
+                    </td>
+                    <td>
+                        @e.LocationId
+                    </td>
+                    <td>
+                        @e.CategoryId
+                    </td>
+                    <td>
+                        @e.eTypeId
+                    </td>
+                    <td>
+                        @e.Duration
+                    </td>
+
+                    <td>
+                        @e.Name
+                    </td>
+                    <td>
+                        @e.Description
+                    </td>
+                    <td>
+                        @e.Phone
+                    </td>
+                    <td>
+                        @e.email
+                    </td>
+                    <td>
+                        @{ 
+                            if(e.eStatusId == 1)
+                            {
+                                <span>Approved</span>
+                            }
+                            else if (e.eStatusId == 2)
+                            {
+                                <span>Pending</span>
+                            }
+                            else if (e.eStatusId == 3)
+                            {
+                                <span>Denied</span>
+                            }
+                        }
+                    </td>
+                    <td>
+                        <a asp-area="" asp-controller="SuperAdmin" asp-action="@("Approve/" +e.Id)">Approve</a>
+                        <a asp-area="" asp-controller="SuperAdmin" asp-action="@("Deny/" +e.Id)">Deny</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</div>
