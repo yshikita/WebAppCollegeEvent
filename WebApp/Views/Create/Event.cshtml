@@ -4,6 +4,8 @@
     ViewData["Title"] = "Create Event";
 }
 
+
+
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyvIknYUBz1-fvFHD8K-frVIT4wrdyj7A&callback=initMap"
         type="text/javascript"></script>
 
@@ -49,6 +51,7 @@
     <div class="col-md-offset-2 col-md-8 col-lg-8 col-lg-offset-2 col-sm-8 col-sm-offset-2">
         <div class="panel" style="border: 1px solid lightgray;">
             <div class="panel-body">
+                Drag the marker for coordinates!
                 <div id="map_canvas" style="height: 200px;"></div>
                 <form class="form-horizontal row" asp-controller="Create" asp-action="MakeEvent" method="post">
                     <h1 style="color:darkblue">Create Event</h1>
